@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontri-Porter</title>
+    <link rel="stylesheet" href="css/lightbox.min.css"> 
+    <link rel="stylesheet" href="sytlesheet.css">
+    <div class="slideText">
+        <div class="slidingtext">Kontrolleure in XXX gesichtet</div>
+        </div>
+    <ul>
+        <center>
+            <li class="dropdown">
+                <a href="sbahn.html">S-Bahn Kontri</a>
+                </div>
+            </li>
+    
+        <li class="dropdown">
+            <a href="ubahn.html">U-Bahn Kontri</a>
+            </div>
+        </li>
+    </ul>
+</head>
+<body>
+    <br>
+ <div id="zwei">  
+    <h1 align="center" id="neun">Kontri-Porter</h1>
+</div>
+<h2 class="Überschrift">Was machen wir?</h2>
+    <h3 class="Text">Wir sind eine Non-Profit-Organisation in Wien die,<br> gegen die privatisierung kämpft! Wir "jagen" Kontrolleure <br> indem wir auf unsere WebSeite präsentieren wo sich Kontrolleure <br> gerade befinden.</h3>
+
+</div>
+<br>
+
+</body>
+</html>
