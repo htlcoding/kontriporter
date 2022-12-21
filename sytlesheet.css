@@ -1,0 +1,10 @@
+h1 { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+Table, th, td {
+    border: thin solid rgba(0, 0, 0, 0.836);
+ }
+ th {font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;}
+ td {font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
+ div {float: left; background-color: darkgray; margin-top: 10px; border: 1px solid; padding: 10px;}
+ body{background-color: rgb(8, 102, 102);}
+ a {color: navy; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+p {font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;}
