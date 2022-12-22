@@ -38,9 +38,8 @@ ul {
     display: inline-block;
     align-self: center;
     }
-    
-    
-    .dropdown-content a:hover {background-color: #f1f1f1}
+     #leiste{color: #f1f1f1; background-color: rgb(8, 17, 2); font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: larger; text-align: center;}
+    .dropdown-content a:hover {background-color: #f1f1f1; }
     
     .dropdown:hover .dropdown-content {
     display: block;
@@ -50,24 +49,8 @@ ul {
     ul {width: 15em; margin: 0 auto;}
     .Überschrift {font-size: large; font-family: sans-serif, Times, serif; color: #f1f1f1;}
     .Text{font-size: small; font-family: Arial, Helvetica, sans-serif; color: #f1f1f1;} 
-    .slideText {
-        display: block;
-        width: auto;
-        height: 30px;
-        background: rgba(8, 102, 102);
-        color: #fff;
-        overflow: hidden;
-        }
-        .slidingtext {
-        padding: 5px;
-          animation-name: example;
-          animation-duration: 25s;
-          animation-iteration-count: infinite;
-          transition: all 40ms ease;
-          font-family: 'Times New Roman', Times, serif;
-        }
-        
-        @keyframes example {
-          from {transform: matrix(1, 0, 0, 1, 500, 5)}
-          to {transform: matrix(1, 0, 0, 1, -344, 5)}
-        }
+    .textfeld{margin-top: 15px; border:black; margin-right: 435px; margin-left: 470px; border: dashed; float: left; background-color:#5e2028}
+    a {text-align: right; color: red;}
+.fünf {
+  display: inline-block;
+}
