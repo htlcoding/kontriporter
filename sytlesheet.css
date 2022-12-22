@@ -49,8 +49,9 @@ ul {
     ul {width: 15em; margin: 0 auto;}
     .Überschrift {font-size: large; font-family: sans-serif, Times, serif; color: #f1f1f1;}
     .Text{font-size: small; font-family: Arial, Helvetica, sans-serif; color: #f1f1f1;} 
-    .textfeld{margin-top: 15px; border:black; margin-right: 435px; margin-left: 470px; border: dashed; float: left; background-color:#5e2028}
+    .textfeld{margin-right: 1px; margin-top: 15px; border:black; border: dashed; float: left; background-color:#5e2028; border-right: 300px;}
     a {text-align: right; color: red;}
 .fünf {
   display: inline-block;
 }
+#link {padding-bottom: 12px;}
