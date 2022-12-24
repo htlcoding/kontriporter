@@ -5,7 +5,7 @@ Table, th, td {
  th {font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;}
  td {font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
  #drei {float: left; background-color: darkgray; margin-top: 10px; border: 1px solid; padding: 10px;}
- body{background-color: rgb(8, 102, 102);}
+ body{background-color: rgb(165, 9, 9);}
  a {color: navy; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
 p {font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;}
 ul {
@@ -13,7 +13,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: rgb(102, 78, 78);
     align-content: center;
     }
     
@@ -30,7 +30,7 @@ ul {
     }
     
     li a:hover, .dropdown:hover .dropbtn {
-    background-color: red;
+    background-color: rgb(201, 175, 175);
     align-content: center;
     }
     
@@ -49,9 +49,19 @@ ul {
     ul {width: 15em; margin: 0 auto;}
     .Überschrift {font-size: large; font-family: sans-serif, Times, serif; color: #f1f1f1;}
     .Text{font-size: small; font-family: Arial, Helvetica, sans-serif; color: #f1f1f1;} 
-    .textfeld{margin-right: 1px; margin-top: 15px; border:black; border: dashed; float: left; background-color:#5e2028; border-right: 300px;}
-    a {text-align: right; color: red;}
+    .textfeld{margin-right: 1px; margin-top: 15px; border:black; border: dashed; float: left; background-color:#3f100d; border-right: 300px;}
+    a {text-align: right; color: rgb(253, 67, 67);}
 .fünf {
   display: inline-block;
 }
 #link {padding-bottom: 12px;}
+.list {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  background-color: gainsboro;
+  text-align:center;
+}
