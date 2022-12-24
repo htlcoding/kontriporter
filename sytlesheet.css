@@ -5,7 +5,7 @@ Table, th, td {
  th {font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;}
  td {font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
  #drei {float: left; background-color: darkgray; margin-top: 10px; border: 1px solid; padding: 10px;}
- body{background-color: rgb(165, 9, 9);}
+ body{background-color: rgb(9, 134, 165);}
  a {color: navy; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
 p {font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;}
 ul {
@@ -45,12 +45,12 @@ ul {
     display: block;
     }
     #zwei {margin-top: 5px; font-size: xx-large;}
-    #neun {font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: #f1f1f1;}
+    #neun {font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: #f1f1f1; c}
     ul {width: 15em; margin: 0 auto;}
     .Überschrift {font-size: large; font-family: sans-serif, Times, serif; color: #f1f1f1;}
     .Text{font-size: small; font-family: Arial, Helvetica, sans-serif; color: #f1f1f1;} 
-    .textfeld{margin-right: 1px; margin-top: 15px; border:black; border: dashed; float: left; background-color:#3f100d; border-right: 300px;}
-    a {text-align: right; color: rgb(253, 67, 67);}
+    .textfeld{margin-right: 1px; margin-top: 15px; border:black; border: dashed; float: left; background-color:#aa3229; border-right: 300px;}
+    a {text-align: right; color: rgb(88, 15, 15);}
 .fünf {
   display: inline-block;
 }
@@ -65,3 +65,4 @@ ul {
   background-color: gainsboro;
   text-align:center;
 }
+#header{color: red;}
