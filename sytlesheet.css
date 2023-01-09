@@ -45,11 +45,11 @@ ul {
     display: block;
     }
     #zwei {margin-top: 5px; font-size: xx-large;}
-    #neun {font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: #f1f1f1; c}
+    #neun {font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: #f1f1f1;}
     ul {width: 15em; margin: 0 auto;}
     .Überschrift {font-size: large; font-family: sans-serif, Times, serif; color: #f1f1f1;}
     .Text{font-size: small; font-family: Arial, Helvetica, sans-serif; color: #f1f1f1;} 
-    .textfeld{background-color: darkred; text-align: center; margin-left: 350px; margin-right: 350px;}
+    .textfeld{background-color: darkred; text-align: center;}
     a {text-align: right; color: rgb(88, 15, 15);}
 .fünf {
   display: inline-block;
