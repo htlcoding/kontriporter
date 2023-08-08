@@ -1,0 +1,178 @@
+/* Reset some default styles */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+    font-family:Arial, Helvetica, sans-serif ;
+}
+
+/* Header Styles */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    padding-bottom: 230px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ffc107;
+}
+
+/* Hero Section Styles */
+.hero {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffc107;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #ffdb58;
+}
+
+/* About Us Section Styles */
+.about-us {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.team img {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.testimonials {
+    margin-top: 20px;
+}
+
+/* Services Section Styles */
+.services {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.service {
+    margin-bottom: 40px;
+}
+
+.service img {
+    max-width: 100px;
+    height: auto;
+}
+
+/* Contact Section Styles */
+.contact {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.contact form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.contact input[type="text"],
+.contact input[type="email"],
+.contact textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.contact textarea {
+    resize: vertical;
+}
+
+.contact button {
+    background-color: #ffc107;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.contact button:hover {
+    background-color: #ffdb58;
+}
+
+.social-links a {
+    color: #333;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #ffc107;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+#main
+{
+font-size: 200px;
+font-family: Arial, Helvetica, sans-serif;
+}
+#undermain
+{
+font-size: 100px;
+font-family: Arial, Helvetica, sans-serif;
+margin-bottom: 100px;
+}
+.spenden
+{
+    text-align: center;
+    padding: 100px 0;
+    background-color: #333;
+    color: #fff;
+}
+a
+{
+color: #4b68b6;
+text-decoration: none;
+font-size: x-large;
+}
+.ranking
+{
+    text-align: center;
+    padding: 100px 0;
+    background-color: #fff;
+    color: #333;
+}
