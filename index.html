@@ -2,39 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontri</title>
-    <link rel="stylesheet" href="css/lightbox.min.css"> 
-    <link rel="stylesheet" href="sytlesheet.css">
-    <div id="leiste">Jetzt <a href="melden.html">Kontrolleure melden</a> und Punkte sammeln!</a></div>
+    <link rel="stylesheet" href="index.css">
+    <title>Kontri-Wien</title>
 </head>
 <body>
-    <br>
- <div id="zwei">  
-    <h1 align="center">Kontri</h1>
-    <h3 align="center" id="underline">Wien</h3>
-</div>
-<ul>
-    <li class="dropdown">
-        <a href="sbahn.html">S-Bahn Kontri</a>
-    </li>
-<li class="dropdown">
-    <a href="ubahn.html">U-Bahn Kontri</a>
-</li>
-<li class="dropdown">
-    <a href="melden.html">Kontri Melden</a>
-</li>
-<li class="dropdown">
-    <a href="billboard.html">Billboard</a>
-</li>
-</ul>
-<div class="textfeld"><h2 class="Überschrift">Wie benutzt man diese Programm?</h2>
-    <h3 class="Text">Diese WebSeite bietet die Möglichkeit an, <br> Kontrolleure zu melden  um andere zu warnen.</a></h3>
-</div>
-<div class="textfeld"><h2 class="Überschrift">Wie kann ich etwas melden?</h2>
-    <h3 class="Text">Sie können 3 mal am Tag melden. <br> Wenn Sie erfolgreich richtig melden, bekommen Sie ein Credit. <br> Wenn Sie auf dem Platz 1 auf dem Billboard sind, bekommen Sie 20% der Spenden!</h3>
-</div>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">Wer sind wir?</a></li>
+                <li><a href="#spenden">Spenden</a></li>
+            </ul>
+        </nav>
+        <div class="hero">
+            <h1 id="main">Kontri</h1>
+            <p id="undermain">Wien</p>
+            <a href="sbahn.html" class="cta-button">S-Bahn Kontri</a>
+            <a href="ubahn.html" class="cta-button">U-Bahn Kontri</a>
+            <a href="melden.html" class="cta-button">Report</a>
+        </div>
+    </header>
 
+    <section id="about">
+        <div class="about-us">
+            <h2>Wer sind wir?</h2>
+            <p>Wir sind zwei Jugendliche die sich gegen der Privatsierung von Öffis einsetzten!</p>
+            <p>Melde hier wenn du eine Kontrolleure siehst und warne andere!</p>
+            </div>
+        </div>
+    </section>
+    <section id="spenden">
+        <div class="spenden">
+            <h2>Spenden</h2>
+            <p>Hilf uns, die Privatsierung zu stoppen! Ihre Spende trägt dazu bei, unsere </p>
+            <p>Plattform zu verbessern und es zu ermöglichen!</p>
+            <a href="paypal">Paypal Spende-Link</a>
+            </div>
+        </div>
+    </section>
+    <section id="ranking">
+        <div class="ranking">
+            <h2>Ranking</h2>
+            <p>Je mehr du meldest, desto mehr Credits bekommst du!</p>
+            <p>Platzt eins des Rankings bekommt 20% der Spenden</p>
+            <a href="billboard.html">Ranking</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; Kein Unternehmen</p>
+    </footer>
 </body>
-</html>  
+</html>
