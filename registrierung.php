@@ -81,7 +81,7 @@
         }
     }
     ?>
-
+    <p>Nachdem du dich registriert, wirst du dich anmelden müssen.</p>
     <p>Hast du bereits ein Konto? <a href="/anmeldung.php">Anmelden</a></p>
 </body>
 </html>
