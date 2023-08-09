@@ -1,5 +1,3 @@
-<p>code funktioniert, SQL fehlt</p>
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -9,39 +7,31 @@
 <body>
     <form method="post" action="">
         <label for="username">Benutzername:</label><br>
-        <input type="text" name="username" id="username"><br>
+        <input type="text" name="username" id="username" required><br>
         <label for="password">Passwort:</label><br>
-        <input type="password" name="password" id="password"><br>
+        <input type="password" name="password" id="password" required><br>
         <input type="checkbox" name="remember" id="remember">
         <label for="remember">Dieses Gerät für 30 Tage vertrauen</label><br>
         <input type="submit" name="login" value="Anmelden">
     </form>
 
     <?php
-    // Hide errors
-    ini_set('display_errors', 0);
-    ini_set('display_startup_errors', 0);
-    error_reporting(0);
 
-    // Connect to the database
+    error_reporting(E_ALL); // Set proper error reporting
+    ini_set('display_errors', 1);
+
+    // Connect to the database securely
     try {
         $db = new mysqli('hostname', 'username', 'password', 'database_name');
     } catch (Exception $e) {
-        echo 'Fehler beim Verbinden zur Datenbank: ' . $e->getMessage();
-        exit;
-    }
-
-    // Check if a session is already started
-    if (session_status() == PHP_SESSION_ACTIVE) {
-        // The user is already logged in, redirect to homepage
-        header('Location: /index.php');
+        header('Location: servers_down.html');
         exit;
     }
 
     // Check if the login form was submitted
-    if (isset($_POST['login'])) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
         // Get the user data from the form
-        $username = $_POST['username'];
+        $username = trim($_POST['username']);
         $password = $_POST['password'];
         $remember = isset($_POST['remember']); // Check if the checkbox is checked
 
@@ -55,21 +45,42 @@
                 $user = $result->fetch_assoc();
                 if (password_verify($password, $user['password'])) {
                     echo 'Anmeldung erfolgreich';
+
                     // Check if a session is already started
                     if (session_status() != PHP_SESSION_ACTIVE) {
-                        // Start a session
-                        session_start();
+                        // Start a session securely
+                        session_start([
+                            'use_only_cookies' => 1,
+                            'use_strict_mode' => 1,
+                            'use_trans_sid' => 0,
+                            'cookie_lifetime' => 30 * 24 * 60 * 60, // 30 days
+                        ]);
                     }
-                    // Store the username in the session variable
+
+                    // Store the username in the session variable securely
                     $_SESSION['username'] = $username;
-                    // If the user wants to remember the device, set a cookie with the username and a random token
+
+                    // If the user wants to remember the device, set a secure cookie with the username and a random token
                     if ($remember) {
-                        // Generate a random token
+                        // Generate a random token securely
                         $token = bin2hex(random_bytes(16));
-                        // Set the cookie for 30 days
-                        setcookie('username', $username, time() + 30 * 24 * 60 * 60);
-                        setcookie('token', $token, time() + 30 * 24 * 60 * 60);
-                        // Store the token in the database
+
+                        // Set the secure cookie for 30 days
+                        setcookie('username', $username, [
+                            'expires' => time() + 30 * 24 * 60 * 60,
+                            'secure' => true,
+                            'httponly' => true,
+                            'samesite' => 'Lax',
+                        ]);
+
+                        setcookie('token', $token, [
+                            'expires' => time() + 30 * 24 * 60 * 60,
+                            'secure' => true,
+                            'httponly' => true,
+                            'samesite' => 'Lax',
+                        ]);
+
+                        // Store the token in the database securely
                         $stmt = $db->prepare('UPDATE users SET token=? WHERE username=?');
                         $stmt->bind_param('ss', $token, $username);
                         $stmt->execute();

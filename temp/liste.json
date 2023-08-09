@@ -1,0 +1,55 @@
+[
+  ["U-Bahn", "U1", "Reumannplatz", 0],
+  ["U-Bahn", "U1", "Karlsplatz", 0],
+  
+  ["U-Bahn", "U2", "Schottentor", 0],
+  ["U-Bahn", "U2", "Stadion", 0],
+  
+  ["U-Bahn", "U3", "Ottakring", 0],
+  ["U-Bahn", "U3", "Simmering", 0],
+  
+  ["U-Bahn", "U4", "Hütteldorf", 0],
+  ["U-Bahn", "U4", "Heiligenstadt", 0],
+  
+  ["U-Bahn", "U6", "Floridsdorf", 0],
+  ["U-Bahn", "U6", "Siebenhirten", 0],
+
+  
+  ["S-Bahn", "S1", "Wien Meidling", 0],
+  ["S-Bahn", "S1", "Wien Hütteldorf", 0],
+
+  ["S-Bahn", "S2", "Wien Matzleinsdorfer Platz", 0],
+  ["S-Bahn", "S2", "Wien Flughafen Wien", 0],
+  
+  ["S-Bahn", "S3", "Wien Meidling", 0],
+  ["S-Bahn", "S3", "Wien Floridsdorf", 0],
+  
+  ["S-Bahn", "S4", "Wien Meidling", 0],
+  ["S-Bahn", "S4", "Wien Hütteldorf", 0],
+  
+  ["S-Bahn", "S7", "Wien Floridsdorf", 0],
+  ["S-Bahn", "S7", "Wien Wolfsthal", 0],
+  
+  ["S-Bahn", "S15", "Wien Traisengasse", 0],
+  ["S-Bahn", "S15", "Wien Oberlaa", 0],
+  
+  ["S-Bahn", "S45", "Wien Heiligenstadt", 0],
+  ["S-Bahn", "S45", "Wien Hütteldorf", 0],
+  
+  ["S-Bahn", "S50", "Wien Handelskai", 0],
+  ["S-Bahn", "S50", "Wien Flughafen Wien", 0],
+  
+  ["S-Bahn", "S60", "Wien Rennweg", 0],
+  ["S-Bahn", "S60", "Wien Wr. Neustadt Hbf.", 0],
+  
+  ["S-Bahn", "S80", "Wien Rennweg", 0],
+  ["S-Bahn", "S80", "Wien Wolkersdorf", 0],
+  
+  ["S-Bahn", "S1, S2, S3, S60, S80", "Wien Hauptbahnhof", 0],
+  
+  ["S-Bahn", "S1, S2, S3, S7", "Wien Rennweg", 0],
+  
+  ["S-Bahn", "S1, S2, S3, S4, S7", "Wien Mitte-Landstraße", 0],
+  
+  ["S-Bahn", "S1, S2, S3, S7", "Wien Praterstern", 0]
+]

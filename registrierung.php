@@ -1,5 +1,3 @@
-<p>code funktioniert, SQL fehlt</p>
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -9,81 +7,68 @@
 <body>
     <form method="post" action="">
         <label for="username">Benutzername:</label><br>
-        <input type="text" name="username" id="username"><br>
+        <input type="text" name="username" id="username" required><br>
         <label for="password">Passwort:</label><br>
-        <input type="password" name="password" id="password"><br>
+        <input type="password" name="password" id="password" required><br>
         <label for="password2">Passwort wiederholen:</label><br>
-        <input type="password" name="password2" id="password2"><br>
+        <input type="password" name="password2" id="password2" required><br>
         <label for="email">E-Mail:</label><br>
-        <input type="email" name="email" id="email"><br>
+        <input type="email" name="email" id="email" required><br>
         <input type="submit" name="register" value="Registrieren">
     </form>
 
     <?php
-    // Hide errors
-    ini_set('display_errors', 0);
-    ini_set('display_startup_errors', 0);
-    error_reporting(0);
-
-    // Connect to the database
+    // Connect to the database securely
     try {
         $db = new mysqli('hostname', 'username', 'password', 'database_name');
     } catch (Exception $e) {
-        echo 'Fehler beim Verbinden zur Datenbank: ' . $e->getMessage();
-        exit;
-    }
-
-    // Check if a session is already started
-    if (session_status() == PHP_SESSION_ACTIVE) {
-        // The user is already logged in, redirect to homepage
-        header('Location: /index.html');
+        header('Location: servers_down.html');
         exit;
     }
 
     // Check if the register form was submitted
-    if (isset($_POST['register'])) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
         // User data from the form
-        $username = $_POST['username'];
+        $username = trim($_POST['username']);
         $password = $_POST['password'];
         $password2 = $_POST['password2'];
-        $email = $_POST['email'];
+        $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
 
-        // Check if all fields are filled
-        if (empty($username) || empty($password) || empty($password2) || empty($email)) {
+        // Validate user input
+        if (empty($username) || empty($password) || empty($password2) || !$email) {
             echo 'Bitte alle Felder ausfüllen';
         } else {
             // Check if the passwords match
-            if ($password != $password2) {
+            if ($password !== $password2) {
                 echo 'Die Passwörter stimmen nicht überein';
             } else {
-                try {
-                    // Check if the username already exists
-                    $stmt = $db->prepare('SELECT * FROM users WHERE username=?');
-                    $stmt->bind_param('s', $username);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-                    if ($result->num_rows > 0) {
-                        echo 'Benutzername bereits vergeben';
+                // Check if the username already exists
+                $stmt = $db->prepare('SELECT * FROM users WHERE username=?');
+                $stmt->bind_param('s', $username);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                if ($result->num_rows > 0) {
+                    echo 'Benutzername bereits vergeben';
+                } else {
+                    // Insert the user into the database securely
+                    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+                    $stmt = $db->prepare('INSERT INTO users (username, password, email) VALUES (?, ?, ?)');
+                    $stmt->bind_param('sss', $username, $password_hash, $email);
+                    if ($stmt->execute()) {
+                        echo 'Registrierung erfolgreich';
+                        // Redirect to the same registration page
+                        header('Location: /anmeldung.php');
+                        exit;
                     } else {
-                        // Insert the user into the database
-                        $password_hash = password_hash($password, PASSWORD_DEFAULT);
-                        $stmt = $db->prepare('INSERT INTO users (username, password, email) VALUES (?, ?, ?)');
-                        $stmt->bind_param('sss', $username, $password_hash, $email);
-                        if ($stmt->execute()) {
-                            echo 'Registrierung erfolgreich';
-                            header('Location: /anmeldung.php');
-                        } else {
-                            echo 'Fehler bei der Registrierung';
-                        }
+                        echo 'Fehler bei der Registrierung';
                     }
-                } catch (Exception $e) {
-                    echo 'Ein Fehler ist aufgetreten: ' . $e->getMessage();
                 }
             }
         }
     }
     ?>
-    <p>Nachdem du dich registriert, wirst du dich anmelden müssen.</p>
+
+    <p>Nachdem du dich registrierst, wirst du dich anmelden müssen.</p>
     <p>Hast du bereits ein Konto? <a href="/anmeldung.php">Anmelden</a></p>
 </body>
 </html>
