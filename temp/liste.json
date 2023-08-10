@@ -40,17 +40,9 @@
   ["S-Bahn", "S50", "Wien Westbahnhof", 0],
   ["S-Bahn", "S50", "Neulengbach", 0],
   
-  ["S-Bahn", "S60", "Wien Rennweg", 0],
-  ["S-Bahn", "S60", "Wien Wr. Neustadt Hbf.", 0],
+  ["S-Bahn", "S60", "Wien Hauptbahnhof", 0],
+  ["S-Bahn", "S60", "Györ", 0],
   
   ["S-Bahn", "S80", "Wien Rennweg", 0],
-  ["S-Bahn", "S80", "Wien Wolkersdorf", 0],
-  
-  ["S-Bahn", "S1, S2, S3, S60, S80", "Wien Hauptbahnhof", 0],
-  
-  ["S-Bahn", "S1, S2, S3, S7", "Wien Rennweg", 0],
-  
-  ["S-Bahn", "S1, S2, S3, S4, S7", "Wien Mitte-Landstraße", 0],
-  
-  ["S-Bahn", "S1, S2, S3, S7", "Wien Praterstern", 0]
+  ["S-Bahn", "S80", "Wien Wolkersdorf", 0]
 ]
