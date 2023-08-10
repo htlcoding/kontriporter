@@ -16,13 +16,15 @@
     </form>
 
     <?php
-
     error_reporting(E_ALL); // Set proper error reporting
     ini_set('display_errors', 1);
 
     // Connect to the database securely
     try {
         $db = new mysqli('hostname', 'username', 'password', 'database_name');
+        if ($db->connect_error) {
+            die('Verbindungsfehler: ' . $db->connect_error);
+        }
     } catch (Exception $e) {
         header('Location: servers_down.html');
         exit;
@@ -35,12 +37,16 @@
         $password = $_POST['password'];
         $remember = isset($_POST['remember']); // Check if the checkbox is checked
 
-        // Check if the username and password are correct
-        try {
+        // Validate user input
+        if (empty($username) || empty($password)) {
+            echo 'Bitte alle Felder ausfüllen';
+        } else {
+            // Check if the username exists
             $stmt = $db->prepare('SELECT * FROM users WHERE username=?');
             $stmt->bind_param('s', $username);
             $stmt->execute();
             $result = $stmt->get_result();
+
             if ($result->num_rows == 1) {
                 $user = $result->fetch_assoc();
                 if (password_verify($password, $user['password'])) {
@@ -91,8 +97,6 @@
             } else {
                 echo 'Falscher Benutzername oder Passwort';
             }
-        } catch (Exception $e) {
-            echo 'Ein Fehler ist aufgetreten: ' . $e->getMessage();
         }
     }
     ?>

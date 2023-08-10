@@ -30,26 +30,28 @@
                 $selectedOption = $jsonOptions[$selectedOptionIndex];
                 $text = $selectedOption[2];
 
-                // Verbinde mit der Datenbank (ersetze 'hostname', 'username', 'password' und 'database_name' entsprechend)
-                $db = new mysqli('hostname', 'username', 'password', 'database_name');
-
-                // Überprüfe auf Verbindungsfehler
-                if ($db->connect_error) {
-                    die('Verbindungsfehler: ' . $db->connect_error);
+                // Connect to the database securely
+                try {
+                    $db = new mysqli('hostname', 'username', 'password', 'database_name');
+                    if ($db->connect_error) {
+                        die('Verbindungsfehler: ' . $db->connect_error);
+                    }
+                } catch (Exception $e) {
+                    header('Location: servers_down.html');
+                    exit;
                 }
 
-                // Bereite die SQL-Anweisung vor
+                // Prepare and execute SQL statement to insert the reported text
                 $stmt = $db->prepare('INSERT INTO gemeldete_texte (username, gemeldeter_text) VALUES (?, ?)');
                 $stmt->bind_param('ss', $_SESSION['username'], $text);
 
-                // Führe die Anweisung aus und überwache mögliche Fehler
                 if ($stmt->execute()) {
                     echo 'Text erfolgreich gemeldet: ' . htmlspecialchars($text);
                 } else {
                     echo 'Fehler beim Speichern des gemeldeten Textes.';
                 }
 
-                // Schließe die Datenbankverbindung
+                // Close the database connection
                 $stmt->close();
                 $db->close();
             } else {
