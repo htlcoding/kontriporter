@@ -15,29 +15,30 @@
   ["U-Bahn", "U6", "Siebenhirten", 0],
 
   
-  ["S-Bahn", "S1", "Wien Meidling", 0],
-  ["S-Bahn", "S1", "Wien Hütteldorf", 0],
+  ["S-Bahn", "S1", "Wiener Neustadt", 0],
+  ["S-Bahn", "S1", "Gänserndorf", 0],
+  ["S-Bahn", "S1", "Marchegg", 0],
 
-  ["S-Bahn", "S2", "Wien Matzleinsdorfer Platz", 0],
-  ["S-Bahn", "S2", "Wien Flughafen Wien", 0],
+  ["S-Bahn", "S2", "Mödling", 0],
+  ["S-Bahn", "S2", "Mistelbach/Laa an der Thaya", 0],
   
-  ["S-Bahn", "S3", "Wien Meidling", 0],
-  ["S-Bahn", "S3", "Wien Floridsdorf", 0],
+  ["S-Bahn", "S3", "Wiener Neustadt", 0],
+  ["S-Bahn", "S3", "Hollabrunn", 0],
   
-  ["S-Bahn", "S4", "Wien Meidling", 0],
-  ["S-Bahn", "S4", "Wien Hütteldorf", 0],
+  ["S-Bahn", "S4", "Wiener Neustadt", 0],
+  ["S-Bahn", "S4", "Wolkersdorf", 0],
   
-  ["S-Bahn", "S7", "Wien Floridsdorf", 0],
-  ["S-Bahn", "S7", "Wien Wolfsthal", 0],
+  ["S-Bahn", "S7", "Wolfsthal", 0],
+  ["S-Bahn", "S7", "Mistelbach", 0],
   
-  ["S-Bahn", "S15", "Wien Traisengasse", 0],
-  ["S-Bahn", "S15", "Wien Oberlaa", 0],
+  ["S-Bahn", "S40", "Heiligenstadt", 0],
+  ["S-Bahn", "S40", "St. Pölten Bahnhof", 0],
   
   ["S-Bahn", "S45", "Wien Heiligenstadt", 0],
   ["S-Bahn", "S45", "Wien Hütteldorf", 0],
   
-  ["S-Bahn", "S50", "Wien Handelskai", 0],
-  ["S-Bahn", "S50", "Wien Flughafen Wien", 0],
+  ["S-Bahn", "S50", "Wien Westbahnhof", 0],
+  ["S-Bahn", "S50", "Neulengbach", 0],
   
   ["S-Bahn", "S60", "Wien Rennweg", 0],
   ["S-Bahn", "S60", "Wien Wr. Neustadt Hbf.", 0],
