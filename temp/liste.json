@@ -1,9 +1,9 @@
 [
-  ["U-Bahn", "U1", "Reumannplatz", 0],
-  ["U-Bahn", "U1", "Karlsplatz", 0],
+  ["U-Bahn", "U1", "Leopoldau", 0],
+  ["U-Bahn", "U1", "Oberlaa", 0],
   
   ["U-Bahn", "U2", "Schottentor", 0],
-  ["U-Bahn", "U2", "Stadion", 0],
+  ["U-Bahn", "U2", "Seestadt", 0],
   
   ["U-Bahn", "U3", "Ottakring", 0],
   ["U-Bahn", "U3", "Simmering", 0],
