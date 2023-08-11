@@ -1,7 +1,22 @@
+<?php
+// Start the session (if not already started)
+session_start();
+
+// Simulate user login/logout actions
+if (isset($_GET['action']) && $_GET['action'] === 'logout') {
+    // Perform logout
+    unset($_SESSION['user']);
+    session_destroy();
+    header("Location: index.php");
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <title>Kontri-Wien</title>
@@ -12,7 +27,9 @@
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="paypal.php">Spenden</a></li>
-                <li><a href="anmeldung.php">Anmelden</a></li>
+                <li><a href="anmeldung.php">
+                    <?php echo isset($_SESSION['user']) ? 'Abmelden' : 'Anmelden'; ?>
+                </a></li>
             </ul>
         </nav>
         <div class="hero">

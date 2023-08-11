@@ -8,22 +8,35 @@
     <link rel="stylesheet" href="tabellen.css">
 </head>
 <body>
-    
-<h2 class="Überschrift">Ranking</h2>
+    <h2 class="Überschrift">Ranking</h2>
+    <table class="list" id="rankingTable">
+        <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Credit</th>
+        </tr>
+        <script>
+            <?php
+            $db = new mysqli('hostname', 'username', 'password', 'database_name');
+            if ($db->connect_error) {
+                die('Verbindungsfehler: ' . $db->connect_error);
+            }
 
-<table class="list" id="rankingTable">
-    <tr>
-        <th>Rank</th> 
-        <th>Name</th>
-        <th>Credit</th>
-     </tr>
-</table>
+            $sql = "SELECT username, credit FROM ranking ORDER BY credit DESC";
+            $result = $db->query($sql);
 
-<script>
-    fetch('./temp/rangliste.json')
-        .then(response => response.json())
-        .then(data => {
-            data.sort((a, b) => b.credit - a.credit); // Sort by credit in descending order
+            if ($result) {
+                $rows = [];
+                while ($row = $result->fetch_assoc()) {
+                    $rows[] = $row;
+                }
+                echo "var data = " . json_encode($rows) . ";";
+            } else {
+                echo "console.error('Error loading ranking data.');";
+            }
+
+            $db->close();
+            ?>
             
             const table = document.getElementById('rankingTable');
             data.forEach((entry, index) => {
@@ -31,14 +44,12 @@
                 const rankCell = row.insertCell(0);
                 const nameCell = row.insertCell(1);
                 const creditCell = row.insertCell(2);
-                
-                rankCell.textContent = index + 1; // Automatically assign rank based on array index
-                nameCell.textContent = entry.name;
+
+                rankCell.textContent = index + 1;
+                nameCell.textContent = entry.username;
                 creditCell.textContent = entry.credit;
             });
-        })
-        .catch(error => console.error('Error loading ranking data:', error));
-</script>
-
+        </script>
+    </table>
 </body>
 </html>
