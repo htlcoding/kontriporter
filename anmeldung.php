@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// Check if the user is already logged in
+if (isset($_SESSION['username'])) {
+    header('Location: ./index.php');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -16,7 +26,6 @@
     </form>
     <p>Noch nicht registriert? <a href="./registrierung.php">Registrieren</a></p>
     <?php
-    session_start();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
         $username = trim($_POST['username']);
@@ -28,7 +37,7 @@
             try {
                 $db = new mysqli('localhost', 'root', '', 'database_name');
                 if ($db->connect_error) {
-                    die('Verbindungsfehler: ' . $db->connect_error);
+                    header('Location: servers_down.html');
                 }
 
                 $stmt = $db->prepare('SELECT * FROM users WHERE username=?');
@@ -65,7 +74,9 @@
                             $stmt = $db->prepare('UPDATE users SET token=? WHERE username=?');
                             $stmt->bind_param('ss', $token, $username);
                             $stmt->execute();
+                            header('Location: ./index.php');
                         }
+                        header('Location: ./index.php');
                     } else {
                         echo 'Falscher Benutzername oder Passwort';
                     }
@@ -73,7 +84,7 @@
                     echo 'Falscher Benutzername oder Passwort';
                 }
             } catch (Exception $e) {
-                //header('Location: servers_down.html');
+                header('Location: servers_down.html');
                 exit;
             }
         }

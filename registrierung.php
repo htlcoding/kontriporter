@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// Check if the user is already logged in
+if (isset($_SESSION['username'])) {
+    header('Location: ./index.php');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -26,8 +36,7 @@
             die('Verbindungsfehler: ' . $db->connect_error);
         }
     } catch (Exception $e) {
-        //header('Location: servers_down.html');
-        die('Verbindungsfehler: ' . $e->getMessage());
+        header('Location: servers_down.html');
     }
 
     // Check if the register form was submitted
