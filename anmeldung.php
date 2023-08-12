@@ -35,7 +35,7 @@ if (isset($_SESSION['username'])) {
             echo 'Bitte alle Felder ausfüllen';
         } else {
             try {
-                $db = new mysqli('localhost', 'root', '', 'database_name');
+                $db = new mysqli('localhost', 'root', '', 'Database1');
                 if ($db->connect_error) {
                     header('Location: servers_down.html');
                 }
@@ -84,7 +84,8 @@ if (isset($_SESSION['username'])) {
                     echo 'Falscher Benutzername oder Passwort';
                 }
             } catch (Exception $e) {
-                header('Location: servers_down.html');
+                echo $e->getMessage();
+                //header('Location: servers_down.html');
                 exit;
             }
         }

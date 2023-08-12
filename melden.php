@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $selectedOptionIndex = $_POST['selected_option'];
 
         try {
-            $db = new mysqli('localhost', 'root', '', 'database_name');
+            $db = new mysqli('localhost', 'root', '', 'Database1');
             if ($db->connect_error) {
                 die('Verbindungsfehler: ' . $db->connect_error);
             }
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <select name="selected_option" id="selected_option" required>
             <?php
             try {
-                $db = new mysqli('localhost', 'root', '', 'database_name');
+                $db = new mysqli('localhost', 'root', '', 'Database1');
                 if ($db->connect_error) {
                     die('Verbindungsfehler: ' . $db->connect_error);
                 }

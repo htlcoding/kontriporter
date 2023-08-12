@@ -1,3 +1,24 @@
+<?php
+$db = new mysqli('localhost', 'root', '', 'Database1'); // Replace with your actual database credentials
+if ($db->connect_error) {
+    die('Verbindungsfehler: ' . $db->connect_error);
+}
+
+$sql = "SELECT transport, line, station, reports FROM kontrollliste ORDER BY reports DESC"; // Order by reports in descending order
+$result = $db->query($sql);
+
+$rows = []; // Initialize an array to store fetched data
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $rows[] = $row; // Push each fetched row into the array
+    }
+} else {
+    echo "console.error('Error loading kontrollliste data.');";
+}
+
+$db->close();
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -18,28 +39,8 @@
         <div class="list" id="listContainer"></div>
     </div>
     <script>
-        <?php
-        $db = new mysqli('localhost', 'root', '', 'database_name');
-        if ($db->connect_error) {
-            die('Verbindungsfehler: ' . $db->connect_error);
-        }
+        var data = <?php echo json_encode($rows); ?>; // Inject the PHP data into JavaScript
 
-        $sql = "SELECT type, line, station, transfer FROM kontrollliste";
-        $result = $db->query($sql);
-
-        if ($result) {
-            $rows = [];
-            while ($row = $result->fetch_assoc()) {
-                $rows[] = array_values($row);
-            }
-            echo "var data = " . json_encode($rows) . ";";
-        } else {
-            echo "console.error('Error loading kontrollliste data.');";
-        }
-
-        $db->close();
-        ?>
-        
         var table = document.createElement("table");
         var headerRow = document.createElement("tr");
         ["Bahn", "Linie", "Endstation", "Meldungen"].forEach(headerText => {
@@ -48,32 +49,30 @@
             headerRow.appendChild(headerCell);
         });
         table.appendChild(headerRow);
-        
+
         data.forEach(rowData => {
             var row = document.createElement("tr");
-            rowData.forEach((cellData, cellIndex) => {
-                var cell = document.createElement(cellIndex === 0 ? "th" : "td");
-                if (typeof cellData === "string") {
-                    var cellText = cellData.toLowerCase();
-                    if (cellText === "s-bahn" || cellText === "u-bahn") {
-                        var image = document.createElement("img");
-                        image.src = cellText === "s-bahn"
-                            ? "./ressourcen/S-Bahn.png"
-                            : "./ressourcen/U-Bahn.png";
-                        image.style.width = "40px";
-                        image.style.height = "40px";
-                        cell.appendChild(image);
-                    } else {
-                        cell.textContent = cellData;
-                    }
-                } else {
-                    cell.textContent = cellData;
-                }
-                row.appendChild(cell);
-            });
+
+            // Access the individual properties from the rowData object
+            var cellTransport = document.createElement("td");
+            cellTransport.textContent = rowData.transport;
+            row.appendChild(cellTransport);
+
+            var cellLine = document.createElement("td");
+            cellLine.textContent = rowData.line;
+            row.appendChild(cellLine);
+
+            var cellStation = document.createElement("td");
+            cellStation.textContent = rowData.station;
+            row.appendChild(cellStation);
+
+            var cellReports = document.createElement("td");
+            cellReports.textContent = rowData.reports;
+            row.appendChild(cellReports);
+
             table.appendChild(row);
         });
-        
+
         var searchInput = document.getElementById("searchInput");
         searchInput.addEventListener("input", function () {
             var searchTerm = searchInput.value.toLowerCase();
@@ -85,7 +84,7 @@
                     var cellText = cell.textContent.toLowerCase();
                     if (
                         (searchTerm === "" || cellText.includes(searchTerm)) &&
-                        !["type", "line", "station", "transfer", "0"].includes(cellText)
+                        !["bahn", "linie", "endstation", "meldungen"].includes(cellText)
                     ) {
                         matchFound = true;
                     }
@@ -93,13 +92,13 @@
                 row.style.display = matchFound || rowIndex === 0 ? "table-row" : "none";
             });
         });
-        
+
         var toggleSwitch = document.getElementById("toggleSwitch");
         var container = document.querySelector(".container");
         toggleSwitch.addEventListener("change", function () {
             container.style.display = toggleSwitch.checked ? "block" : "none";
         });
-        
+
         document.querySelector('.list').appendChild(table);
     </script>
 </body>

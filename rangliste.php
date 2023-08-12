@@ -17,12 +17,12 @@
         </tr>
         <script>
             <?php
-            $db = new mysqli('localhost', 'root', '', 'database_name');
+            $db = new mysqli('localhost', 'root', '', 'Database1');
             if ($db->connect_error) {
                 die('Verbindungsfehler: ' . $db->connect_error);
             }
 
-            $sql = "SELECT username, credit FROM ranking ORDER BY credit DESC";
+            $sql = "SELECT username, credit FROM ranking ORDER BY credit DESC LIMIT 100";
             $result = $db->query($sql);
 
             if ($result) {
@@ -37,7 +37,7 @@
 
             $db->close();
             ?>
-            
+
             const table = document.getElementById('rankingTable');
             data.forEach((entry, index) => {
                 const row = table.insertRow();

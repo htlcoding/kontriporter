@@ -16,12 +16,12 @@ if (isset($_SESSION['username'])) {
 </head>
 <body>
     <form method="post" action="">
-        <label for="username">Benutzername:</label><br>
-        <input type="text" name="username" id="username" required><br>
-        <label for="password">Passwort:</label><br>
-        <input type="password" name="password" id="password" required><br>
+        <label for="username">Benutzername (3-25 Zeichen):</label><br>
+        <input type="text" name="username" id="username" minlength="3" maxlength="25" required><br>
+        <label for="password">Passwort (5-100 Zeichen, mindestens 1 Zahl):</label><br>
+        <input type="password" name="password" id="password" minlength="5" maxlength="100" required><br>
         <label for="password2">Passwort wiederholen:</label><br>
-        <input type="password" name="password2" id="password2" required><br>
+        <input type="password" name="password2" id="password2" minlength="5" maxlength="100" required><br>
         <label for="email">E-Mail:</label><br>
         <input type="email" name="email" id="email" required><br>
         <input type="submit" name="register" value="Registrieren">
@@ -31,7 +31,7 @@ if (isset($_SESSION['username'])) {
     <?php
     // Connect to the database securely
     try {
-        $db = new mysqli('localhost', 'root', '', 'database_name');
+        $db = new mysqli('localhost', 'root', '', 'Database1');
         if ($db->connect_error) {
             die('Verbindungsfehler: ' . $db->connect_error);
         }
@@ -49,8 +49,12 @@ if (isset($_SESSION['username'])) {
         if (empty($username) || empty($password) || empty($password2) || !$email) {
             echo 'Bitte alle Felder ausfüllen';
         } else {
-            if ($password !== $password2) {
+            if (strlen($username) < 3 || strlen($username) > 25) {
+                echo 'Benutzername muss zwischen 3 und 25 Zeichen lang sein';
+            } else if ($password !== $password2) {
                 echo 'Die Passwörter stimmen nicht überein';
+            } else if (strlen($password) < 5 || strlen($password) > 100 || !preg_match('/\d/', $password)) {
+                echo 'Passwort muss zwischen 5 und 100 Zeichen lang sein und mindestens eine Zahl enthalten';
             } else {
                 $stmt = $db->prepare('SELECT * FROM users WHERE username=?');
                 $stmt->bind_param('s', $username);
@@ -65,6 +69,12 @@ if (isset($_SESSION['username'])) {
                     $stmt->bind_param('sss', $username, $password_hash, $email);
 
                     if ($stmt->execute()) {
+                        // Insert the user into the ranking table with initial credit value
+                        $initialCredit = 0; // Set the initial credit value
+                        $stmt = $db->prepare('INSERT INTO ranking (username, credit) VALUES (?, ?)');
+                        $stmt->bind_param('si', $username, $initialCredit);
+                        $stmt->execute();
+
                         echo 'Registrierung erfolgreich';
                         header('Location: anmeldung.php');
                         exit;
