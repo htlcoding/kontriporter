@@ -17,7 +17,7 @@
         </tr>
         <script>
             <?php
-            $db = new mysqli('hostname', 'username', 'password', 'database_name');
+            $db = new mysqli('localhost', 'username', 'realactualsqlpassword', 'database_name');
             if ($db->connect_error) {
                 die('Verbindungsfehler: ' . $db->connect_error);
             }
