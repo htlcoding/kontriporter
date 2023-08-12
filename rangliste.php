@@ -19,7 +19,7 @@
             <?php
             $db = new mysqli('localhost', 'root', '', 'Database1');
             if ($db->connect_error) {
-                die('Verbindungsfehler: ' . $db->connect_error);
+                header('Location: servers_down.html');
             }
 
             $sql = "SELECT username, credit FROM ranking ORDER BY credit DESC LIMIT 100";

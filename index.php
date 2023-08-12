@@ -1,22 +1,29 @@
 <?php
-// Start the session (if not already started)
 session_start();
 
 // Simulate user login/logout actions
 if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     // Perform logout
-    unset($_SESSION['user']);
+    foreach ($_COOKIE as $name => $value) {
+        setcookie($name, '', time() - 60*60*24, "/");
+    }
     session_destroy();
     header("Location: index.php");
     exit;
 }
 
+if (isset($_GET['action']) && $_GET['action'] === 'error') {
+    echo 'Ein Fehler ist aufgetreten';
+}
+
+require_once './scripts/user_validation.php';
+$isLoggedIn = CheckLoggedIn();
 ?>
 
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <title>Kontri-Wien</title>
@@ -27,8 +34,8 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="paypal.php">Spenden</a></li>
-                <li><a href="anmeldung.php">
-                    <?php echo isset($_SESSION['user']) ? 'Abmelden' : 'Anmelden'; ?>
+                <li><a href="<?php echo $isLoggedIn ? 'index.php?action=logout' : 'anmeldung.php'; ?>">
+                    <?php echo $isLoggedIn ? 'Abmelden' : 'Anmelden'; ?>
                 </a></li>
             </ul>
         </nav>
@@ -43,27 +50,25 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     <section id="spenden">
         <div class="spenden">
             <h2>Spenden</h2>
-            <p>Hilf uns, die Privatsierung zu stoppen! Ihre Spende trägt dazu bei, unsere </p>
-            <p>Plattform zu verbessern und es zu ermöglichen!</p>
+            <p>Hilf uns, die Privatsierung zu stoppen! Ihre Spende trägt dazu bei, unsere Plattform zu verbessern und es zu ermöglichen!</p>
             <a href="paypal.php">Paypal Spende-Link</a>
-            </div>
         </div>
     </section>
+
     <section id="ranking">
         <div class="ranking">
             <h2>Rangliste</h2>
             <p>Je mehr du meldest, desto mehr Credits bekommst du!</p>
             <p>Platzt eins des Rankings bekommt 20% der Spenden</p>
             <a href="rangliste.php">Rangliste</a>
-            </div>
         </div>
     </section>
+
     <section id="about">
         <div class="about-us">
             <h2>Wer sind wir?</h2>
             <p>Wir sind zwei Jugendliche die sich gegen der Privatsierung von Öffis einsetzten!</p>
             <p>Wir sammeln Daten darüber wie oft und wo sich Ticket-Kontrolleure in Wien befinden!</p>
-            </div>
         </div>
     </section>
 

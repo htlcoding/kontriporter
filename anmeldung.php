@@ -1,8 +1,7 @@
 <?php
+require_once './scripts/user_validation.php';
 session_start();
-
-// Check if the user is already logged in
-if (isset($_SESSION['username'])) {
+if (CheckLoggedIn()) {
     header('Location: ./index.php');
     exit;
 }
@@ -26,7 +25,6 @@ if (isset($_SESSION['username'])) {
     </form>
     <p>Noch nicht registriert? <a href="./registrierung.php">Registrieren</a></p>
     <?php
-
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
         $username = trim($_POST['username']);
         $password = $_POST['password'];
@@ -38,6 +36,7 @@ if (isset($_SESSION['username'])) {
                 $db = new mysqli('localhost', 'root', '', 'Database1');
                 if ($db->connect_error) {
                     header('Location: servers_down.html');
+                    exit;
                 }
 
                 $stmt = $db->prepare('SELECT * FROM users WHERE username=?');
@@ -48,35 +47,22 @@ if (isset($_SESSION['username'])) {
                 if ($result->num_rows == 1) {
                     $user = $result->fetch_assoc();
                     if (password_verify($password, $user['password'])) {
-                        echo 'Anmeldung erfolgreich';
 
-                        $remember = isset($_POST['remember']);
-                        if ($remember) {
-                            // Generate a random token securely
+                        if (isset($_POST['remember'])) {
                             $token = bin2hex(random_bytes(16));
 
-                            // Set the secure cookie for 30 days
-                            setcookie('username', $username, [
-                                'expires' => time() + 30 * 24 * 60 * 60,
-                                'secure' => true,
-                                'httponly' => true,
-                                'samesite' => 'Lax',
-                            ]);
+                            setcookie('username', $username, time() + 30 * 24 * 60 * 60, '/', null, false, true);
+                            setcookie('token', $token, time() + 30 * 24 * 60 * 60, '/', null, false, true);
 
-                            setcookie('token', $token, [
-                                'expires' => time() + 30 * 24 * 60 * 60,
-                                'secure' => true,
-                                'httponly' => true,
-                                'samesite' => 'Lax',
-                            ]);
-
-                            // Store the token in the database securely
                             $stmt = $db->prepare('UPDATE users SET token=? WHERE username=?');
                             $stmt->bind_param('ss', $token, $username);
                             $stmt->execute();
-                            header('Location: ./index.php');
                         }
+
+                        $_SESSION['username'] = $username; // Store username in session
+
                         header('Location: ./index.php');
+                        exit;
                     } else {
                         echo 'Falscher Benutzername oder Passwort';
                     }
@@ -84,9 +70,9 @@ if (isset($_SESSION['username'])) {
                     echo 'Falscher Benutzername oder Passwort';
                 }
             } catch (Exception $e) {
+                // Handle exception appropriately
                 echo $e->getMessage();
-                //header('Location: servers_down.html');
-                exit;
+                // header('Location: servers_down.html');
             }
         }
     }

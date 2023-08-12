@@ -1,8 +1,7 @@
 <?php
+require_once './scripts/user_validation.php';
 session_start();
-
-// Check if the user is already logged in
-if (isset($_SESSION['username'])) {
+if (CheckLoggedIn()) {
     header('Location: ./index.php');
     exit;
 }
@@ -33,7 +32,7 @@ if (isset($_SESSION['username'])) {
     try {
         $db = new mysqli('localhost', 'root', '', 'Database1');
         if ($db->connect_error) {
-            die('Verbindungsfehler: ' . $db->connect_error);
+            header('Location: servers_down.html');
         }
     } catch (Exception $e) {
         header('Location: servers_down.html');

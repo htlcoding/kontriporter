@@ -1,7 +1,11 @@
 <?php
+if (isset($_GET['action']) && $_GET['action'] === 'successreport') {
+    echo 'Kontri erfolgreich gemeldet';
+}
+
 $db = new mysqli('localhost', 'root', '', 'Database1'); // Replace with your actual database credentials
 if ($db->connect_error) {
-    die('Verbindungsfehler: ' . $db->connect_error);
+    header('Location: servers_down.html');
 }
 
 $sql = "SELECT transport, line, station, reports FROM kontrollliste ORDER BY reports DESC"; // Order by reports in descending order
