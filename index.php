@@ -15,7 +15,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
 if (isset($_GET['action']) && $_GET['action'] === 'error') {
     echo 'Ein Fehler ist aufgetreten';
 }
-
+test
 require_once './scripts/user_validation.php';
 $isLoggedIn = CheckLoggedIn();
 ?>
